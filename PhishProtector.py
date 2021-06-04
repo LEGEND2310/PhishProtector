@@ -25,7 +25,7 @@ st.sidebar.write('OR')
 
 st.sidebar.subheader('Manually input features for prediction')
 ssl_cert = st.sidebar.slider('SSL Certificate', -1, 1, 0, step = 1)
-dom_reg_len = st.sidebar.slider('Domin Registeration Length', 0, 1, 0, step = 1)
+dom_reg_len = st.sidebar.slider('Domain Registeration Length', 0, 1, 0, step = 1)
 url_anchor = st.sidebar.slider('URL of Anchor', -1, 1, 0, step = 1)
 pref_suff = st.sidebar.slider('Prefix Suffix', -1, 1, 0, step = 1)
 web_traf = st.sidebar.slider('Web Traffic', -1, 1, 0, step = 1)
@@ -47,9 +47,13 @@ if url:
 
         pred = model31.predict(data31)
         pred_prob = model31.predict_proba(data31)
+        
         st.subheader('Is the website youre visiting going to steal your data?')
         if pred == 0:
-                st.success(f"No the website you're visiting is safe have a happy surfing. I'm like {round(pred_prob[0][0]*100,2)}% sure of that!!!")
+                if(pred_prob[0][0]>0.7):
+                        st.success(f"No the website you're visiting is safe have a happy surfing. I'm like {round(pred_prob[0][0]*100,2)}% sure of that!!!")
+                else:
+                        st.warning(f"The website you're visiting might steal your data! Please be careful while surfing. I'm like {round(pred_prob[0][0]*100,2)}% sure of that!!!")
         else:
                 st.error(f"This website is probably going to steal your data. I'm like {round(pred_prob[0][1]*100,2)}% sure of that!!!")
         end31 = time.time()
@@ -64,10 +68,14 @@ else:
         model5 = pickle.load(open('model5.pkl', 'rb'))
         pred = model5.predict(data5)
         pred_prob = model5.predict_proba(data5)
+        
 
         st.subheader('Is the website youre visiting going to steal your data?')
         if pred == 0:
-                st.success(f"No the website you're visiting is safe have a happy surfing. I'm like {round(pred_prob[0][0]*100,2)}% sure of that!!!")
+                if(pred_prob[0][0]>0.7):
+                        st.success(f"No the website you're visiting is safe have a happy surfing. I'm like {round(pred_prob[0][0]*100,2)}% sure of that!!!")
+                else:
+                        st.warning(f"The website you're visiting might steal your data! Please be careful while surfing. I'm like {round(pred_prob[0][0]*100,2)}% sure of that!!!")
         else:
                 st.error(f"This website is probably going to steal your data. I'm like {round(pred_prob[0][1]*100,2)}% sure of that!!!")
         end5 = time.time()
