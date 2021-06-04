@@ -51,7 +51,7 @@ if url:
         if pred == 0:
                 st.success(f"No the website you're visiting is safe have a happy surfing. I'm like {round(pred_prob[0][0]*100,2)}% sure of that!!!")
         else:
-                st.warning(f"This website is probably going to steal your data. I'm like {round(pred_prob[0][1]*100,2)}% sure of that!!!")
+                st.error(f"This website is probably going to steal your data. I'm like {round(pred_prob[0][1]*100,2)}% sure of that!!!")
         end31 = time.time()
         st.subheader("Time Taken for Prediction")
         st.write(f"This check costed you {round(end31-start,2)} seconds of your precious time.")
@@ -69,7 +69,7 @@ else:
         if pred == 0:
                 st.success(f"No the website you're visiting is safe have a happy surfing. I'm like {round(pred_prob[0][0]*100,2)}% sure of that!!!")
         else:
-                st.warning(f"This website is probably going to steal your data. I'm like {round(pred_prob[0][1]*100,2)}% sure of that!!!")
+                st.error(f"This website is probably going to steal your data. I'm like {round(pred_prob[0][1]*100,2)}% sure of that!!!")
         end5 = time.time()
         st.subheader("Time Taken for Prediction")
         st.write(f"This check costed you {round(end5-start,2)} seconds of your precious time.")
