@@ -40,7 +40,7 @@ st.subheader('Features Input by User')
 
 if url:
         data31 = get_all_features(url)
-        st.write(f"The website entered by the user is {url}")
+        st.markdown("""The website entered by the user is [User_Input_Website](https://www.youtube.com/watch?v=dQw4w9WgXcQ)""")
         st.dataframe(data31)
 
         model31 = pickle.load(open('model31.pkl', 'rb'))
